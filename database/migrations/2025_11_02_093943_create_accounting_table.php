@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('accounting', function (Blueprint $table) {
             $table->id();
+            $table->date('as_of_date')->nullable();
+            $table->decimal('capital', 14, 2)->default(0);
+            $table->decimal('goods', 14, 2)->default(0);
+            $table->decimal('pos', 14, 2)->default(0);
+            $table->decimal('account', 14, 2)->default(0);
+            $table->decimal('expense', 14, 2)->default(0);
+            $table->decimal('salary', 14, 2)->default(0);
+            $table->text('notes')->nullable();
             $table->timestamps();
+
+            // Indexes for better performance
+            $table->index('as_of_date');
         });
     }
 

@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('pieces_daily_sales', function (Blueprint $table) {
             $table->id();
+            $table->date('date')->nullable();
+            $table->decimal('cash_amount', 12, 2)->default(0);
+            $table->decimal('transfer_amount', 12, 2)->default(0);
+            $table->decimal('total_sales', 12, 2)->default(0);
+            $table->decimal('shop_daily_sales', 12, 2)->default(0);
+            $table->text('notes')->nullable();
             $table->timestamps();
+
+            // Indexes for better performance
+            $table->index('date');
         });
     }
 
